@@ -33,16 +33,16 @@ const Regist: React.FC = () => {
 
 const style: {[key: string]: React.CSSProperties} = {
     title:{
-        fontFamily:"sans-serif",
+        fontFamily:"Yu Gothic",
         margin:"30px 0px 10px 30px"
     },
     message:{
         display:"block",
-        fontFamily:"sans-serif",
+        fontFamily:"Yu Gothic",
         margin:"10px 0 -2px 30px",      
     },
     rigistArea:{
-        fontFamily:"sans-serif",
+        fontFamily:"Yu Gothic",
         margin:"20px 0px"
     },
     rigistbtn:{

@@ -36,11 +36,11 @@ const Stock: React.FC = () => {
 
 const style: {[key: string]: React.CSSProperties} = {
     title:{
-        fontFamily:"sans-serif",
+        fontFamily:"Yu Gothic",
         margin:"30px 0px 10px 30px"
     },
     disTitle:{
-        fontFamily:"sans-serif",
+        fontFamily:"Yu Gothic",
         margin:"0px 0px 10px 30px",
     },
     disArea:{
@@ -85,7 +85,7 @@ const style: {[key: string]: React.CSSProperties} = {
         borderBottom:"solid 1.5px #444444",
         background:"#eaeaea",
         color:"#444444",
-        fontFamily:"sans-serif",
+        fontFamily:"Yu Gothic",
         padding:"15px 20px",
     },
     listTd2n1:{
@@ -93,7 +93,7 @@ const style: {[key: string]: React.CSSProperties} = {
         borderBottom:"solid 1.5px #444444",
         background:"#fff",
         color:"#444444",
-        fontFamily:"sans-serif",
+        fontFamily:"Yu Gothic",
         padding:"15px 20px",
     },
     listTd2n:{
@@ -101,7 +101,7 @@ const style: {[key: string]: React.CSSProperties} = {
         borderBottom:"solid 1.5px #444444",
         background:"#eaeaea",
         color:"#444444",
-        fontFamily:"sans-serif",
+        fontFamily:"Yu Gothic",
         padding:"15px 20px",
     }
 

@@ -105,12 +105,12 @@ const style: {[key: string]: React.CSSProperties} = {
     anker:{
         textDecoration:"none",
         color:"#444444",
-        fontFamily:"sans-serif"
+        fontFamily:"Yu Gothic",
     },
     logo:{
         marginLeft:"10px",
         marginTop:"5px",
-        fontFamily:"sans-serif",
+        fontFamily:"Yu Gothic",
         fontSize:"18px",
         fontWeight:"500"
     },
@@ -139,7 +139,7 @@ const style: {[key: string]: React.CSSProperties} = {
         marginRight:"50px",
         background:"#ff7c3c",
         color:"#fff",
-        fontFamily:"sans-serif",
+        fontFamily:"Yu Gothic",
         padding:"7px 14px",
         border:"solid 0px #fff",
         fontSize:"14px",

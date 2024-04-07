@@ -18,7 +18,7 @@ const Login: React.FC = () => {
 const style: {[key: string]: React.CSSProperties} = {
     title:{
         textAlign:"center",
-        fontFamily:"sans-serif",
+        fontFamily:"Yu Gothic",
         fontSize:"24px",
         fontWeight:"bold",
         marginTop:"70px"
@@ -40,7 +40,7 @@ const style: {[key: string]: React.CSSProperties} = {
     loginbtn:{
         display:"block",
         margin:"40px auto",
-        fontFamily:"sans-serif",
+        fontFamily:"Yu Gothic",
         width:"420px",
         height:"35px",
         background:"#ff7c3c",
