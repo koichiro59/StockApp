@@ -47,6 +47,7 @@ const style: {[key: string]: React.CSSProperties} = {
         color:"#fff",
         border:"solid 1px #fff",
         fontSize:"15px",
+        borderRadius:"1px"
     },
 }
 
