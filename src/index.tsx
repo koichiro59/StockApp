@@ -4,6 +4,7 @@ import Header from './header';
 import Login from './login';
 import List from './list';
 import Stock from './stock';
+import Regist from './regist';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -11,7 +12,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Header/>
-    <Stock/>
+    <Regist/>
   </React.StrictMode>
 );
 
