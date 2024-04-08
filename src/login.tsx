@@ -1,17 +1,25 @@
-import React, { useState } from 'react';
+import React  from 'react';
+import List from './list';
+import { BrowserRouter, Link, Route, Routes,Navigate } from "react-router-dom";
+
 
 const Login: React.FC = () => {
     return (
-        <div>
-            <h2 style={style.title}>ログイン</h2>
-            <form action="" style={style.form}>
-                <input type="text" style={style.input} placeholder='ユーザー名(必須)'/>
-                <input type="text" style={style.input} placeholder='パスワード(必須)'/>
-                <div>
-                     <button style={style.loginbtn}>ログイン</button>
-                </div>
-            </form>
-        </div>
+        <BrowserRouter>
+            <div>
+                <h2 style={style.title}>ログイン</h2>
+                <form action="" style={style.form}>
+                    <input type="text" style={style.input} placeholder='ユーザー名(必須)'/>
+                    <input type="text" style={style.input} placeholder='パスワード(必須)'/>
+                    <div>
+                        <button style={style.loginbtn}><Link to="/list">ログイン</Link></button>
+                    </div>
+                </form>
+            </div>
+            <Routes>
+                <Route path="/list" element={<List/>}/>
+            </Routes>
+        </BrowserRouter>
     )
 }
 
@@ -21,7 +29,7 @@ const style: {[key: string]: React.CSSProperties} = {
         fontFamily:"Yu Gothic",
         fontSize:"24px",
         fontWeight:"bold",
-        marginTop:"70px"
+        marginTop:"50px"
     },
     form:{
         margin:"-10px auto 0 auto",
