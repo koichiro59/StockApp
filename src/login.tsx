@@ -5,7 +5,6 @@ import { BrowserRouter, Link, Route, Routes,Navigate } from "react-router-dom";
 
 const Login: React.FC = () => {
     return (
-        <BrowserRouter>
             <div>
                 <h2 style={style.title}>ログイン</h2>
                 <form action="" style={style.form}>
@@ -16,10 +15,6 @@ const Login: React.FC = () => {
                     </div>
                 </form>
             </div>
-            <Routes>
-                <Route path="/list" element={<List/>}/>
-            </Routes>
-        </BrowserRouter>
     )
 }
 
