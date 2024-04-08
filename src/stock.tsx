@@ -1,8 +1,11 @@
-import React from "react";
+import React, {useState,useContext} from "react";
+import { AuthContext } from "./param"
 
 const Stock: React.FC = () => {
+    const param = useContext(AuthContext);
+
     return(
-        <div>
+        <div style={param?.value?style.open:style.close}>
             <h2 style={style.title}>商品在庫管理</h2>
             <h3 style={style.disTitle}>在庫処理</h3>
             <div style={style.disArea}>
@@ -35,6 +38,12 @@ const Stock: React.FC = () => {
 }
 
 const style: {[key: string]: React.CSSProperties} = {
+    close:{
+
+    },
+    open:{
+        marginLeft:"200px"
+    },
     title:{
         fontFamily:"Yu Gothic",
         margin:"30px 0px 10px 30px"

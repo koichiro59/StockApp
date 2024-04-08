@@ -1,11 +1,14 @@
-import React  from 'react';
+import React, {useState,useContext} from "react";
 import List from './list';
 import { BrowserRouter, Link, Route, Routes,Navigate } from "react-router-dom";
+import { AuthContext } from "./param"
 
 
 const Login: React.FC = () => {
+    const param = useContext(AuthContext);
+
     return (
-            <div>
+            <div style={param?.value?style.open:style.close}>
                 <h2 style={style.title}>ログイン</h2>
                 <form action="" style={style.form}>
                     <input type="text" style={style.input} placeholder='ユーザー名(必須)'/>

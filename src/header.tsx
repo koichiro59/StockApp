@@ -1,31 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState , useContext} from 'react';
+import { Link } from "react-router-dom";
+import { AuthContext } from "./param"
 
 const Header: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const param = useContext(AuthContext);
+
+  const handleSignOut = () => {
+    param?.setValue(!param.value);
+  };
 
   return (
-    <header style={style.header}>
-        {/* ハンバーガーメニュー */}
-        <div style={style.menuArea}>
-            <div style={style.hamburger} onClick={() => setIsOpen(!isOpen)}>
-                <span style={isOpen?style.nonspan1:style.span1}></span>
-                <span style={isOpen?style.nonspan2:style.span2}></span>
-                <span style={isOpen?style.nonspan3:style.span3}></span>
-            </div>
-            <nav>
-                <ul style={isOpen?style.active:style.nonActive}>
-                    <li style={style.sideNav}><a href="#" style={style.anker}>商品一覧</a></li>
-                    <li style={style.sideNav}><a href="#" style={style.anker}>売上一括登録</a></li>
-                </ul>
-         </nav>
-         {/* ヘッダーロゴ */}
-            <div style={style.logo}>在庫管理システム</div>
+        <div>
+            <header style={style.header}>
+                {/* ハンバーガーメニュー */}
+                <div style={style.menuArea}>
+                    <div style={style.hamburger} onClick={handleSignOut}>
+                        <span style={param?.value?style.nonspan1:style.span1}></span>
+                        <span style={param?.value?style.nonspan2:style.span2}></span>
+                        <span style={param?.value?style.nonspan3:style.span3}></span>
+                    </div>
+                    <nav>
+                        <ul style={param?.value?style.active:style.nonActive}>
+                            <li style={style.sideNav}><Link to="/list" style={style.anker}>商品一覧</Link></li>
+                            <li style={style.sideNav}><Link to="/stock" style={style.anker}>売上一括登録</Link></li>
+                        </ul>
+                </nav>
+                {/* ヘッダーロゴ */}
+                    <div style={style.logo}><Link to="/list" style={style.logoTitle}>在庫管理システム</Link></div>
+                </div>
+                {/* ログアウトボタン */}
+                <div style={style.navArea}>
+                    <button style={style.logoutBtn}>ログアウト</button>
+                </div>
+            </header>
         </div>
-        {/* ログアウトボタン */}
-        <div style={style.navArea}>
-            <button style={style.logoutBtn}>ログアウト</button>
-        </div>
-    </header>
+    
   );
 }
 
@@ -85,12 +94,14 @@ const style: {[key: string]: React.CSSProperties} = {
         transform: "translateY(-6px) rotate(45deg)",
     },
     active:{
-        position:"absolute",
+        position:"fixed",
         background:"#eaeaea",
         width:"15%",
         height:"100%",
         marginLeft:"-60px",
-        marginTop:"30px"
+        marginTop:"30px",
+        zIndex:"2",
+        transition: "all 0.5s",
     },
     nonActive:{
         display:"none"
@@ -112,7 +123,11 @@ const style: {[key: string]: React.CSSProperties} = {
         marginTop:"5px",
         fontFamily:"Yu Gothic",
         fontSize:"18px",
-        fontWeight:"500"
+        fontWeight:"500",
+    },
+    logoTitle:{
+        textDecoration:"none",
+        color:"#444444"
     },
     menuArea:{
         display:"flex",
@@ -144,6 +159,15 @@ const style: {[key: string]: React.CSSProperties} = {
         border:"solid 0px #fff",
         fontSize:"14px",
         borderRadius:"1px"
+    },
+    close:{
+        display:"none",
+    },
+    open:{
+        background:"#000",
+        height:"100%",
+        width:"15%",
+        display:"block",
     }
 };
 

@@ -1,9 +1,12 @@
 import { title } from "process";
-import React from "react";
+import React, {useState,useContext} from "react";
+import { AuthContext } from "./param"
 
 const List: React.FC = () => {
+    const param = useContext(AuthContext);
+
     return(
-        <div>
+        <div style={param?.value?style.open:style.close}>
             <h2 style={style.title}>商品一覧</h2>
             <div style={style.addArea}>
                 <div style={style.icon}>〇</div>
@@ -40,6 +43,12 @@ const List: React.FC = () => {
 }
 
 const style: {[key: string]: React.CSSProperties} = {
+    close:{
+
+    },
+    open:{
+        marginLeft:"200px"
+    },
     title:{
         fontFamily:"Yu Gothic",
         margin:"30px 0px 10px 30px"
