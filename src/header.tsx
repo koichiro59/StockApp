@@ -26,7 +26,15 @@ const Header: React.FC = () => {
                         </ul>
                 </nav>
                 {/* ヘッダーロゴ */}
-                    <div style={style.logo}><Link to="/" style={style.logoTitle}>在庫管理システム</Link></div>
+                    <div style={style.logo}>
+                        {param?.isSubmit?(<>
+                            <Link to="/list">在庫管理システム</Link>
+                        </>):(
+                            <>
+                                <Link to="/">在庫管理システム</Link>
+                            </>)}
+                        <Link to="/" style={style.logoTitle}></Link>
+                    </div>
                 </div>
                 {/* ログアウトボタン */}
                 <div style={style.navArea}>

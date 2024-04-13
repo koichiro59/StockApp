@@ -23,9 +23,11 @@ const Login: React.FC = () => {
         param?.setFormError(error);
         if(formValue.userName==correctValue.correctUserName&&formValue.password==correctValue.correctPassword){
             param?.setIsSubmit(true);
+            param?.setIsError(true);
             navigate("/list")
         }else{
             param?.setIsSubmit(false)
+            param?.setIsError(false)
         }
     }
 
@@ -48,9 +50,9 @@ const Login: React.FC = () => {
                 <h2 style={style.title}>ログイン</h2>
                 <form action="" style={style.form}>
                     <input type="text" name="userName" style={style.input} placeholder='ユーザー名(必須)' onChange={(e)=>handleChnage(e)}/>
-                    <p style={param?.isSubmit?style.nonError:style.errorMessage}>{param?.formError.userName}</p>
+                    <p style={param?.isError?style.nonError:style.errorMessage}>{param?.formError.userName}</p>
                     <input type="text" name="password" style={style.input} placeholder='パスワード(必須)' onChange={(e)=>handleChnage(e)}/>
-                    <p style={param?.isSubmit?style.nonError:style.errorMessage}>{param?.formError.password}</p>
+                    <p style={param?.isError?style.nonError:style.errorMessage}>{param?.formError.password}</p>
                     <div>
                         <button style={style.loginbtn} onClick={(e)=>handleSubmit(e)}>ログイン
                         </button>
