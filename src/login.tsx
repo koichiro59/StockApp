@@ -1,20 +1,59 @@
-import React, {useState,useContext} from "react";
+import React, {useState,useContext, useEffect} from "react";
 import List from './list';
-import { BrowserRouter, Link, Route, Routes,Navigate } from "react-router-dom";
+import { BrowserRouter, Link, Route, Routes, useNavigate} from "react-router-dom";
 import { AuthContext } from "./param"
+import { error } from "console";
 
 
 const Login: React.FC = () => {
     const param = useContext(AuthContext);
+    const navigate=useNavigate();
+  
+    const correctValue={correctUserName:"Hello",correctPassword:"Hello123"};
+    const error={userName:"",password:""};
+    const [formValue,setFormValue]=useState({userName:"",password:""});
+
+    const handleChnage=(e:any)=>{
+        setFormValue({...formValue, [e.target.name]:e.target.value});
+    }
+
+    const handleSubmit=(e:any)=>{
+        e.preventDefault();
+        validate(formValue);
+        param?.setFormError(error);
+        if(formValue.userName==correctValue.correctUserName&&formValue.password==correctValue.correctPassword){
+            param?.setIsSubmit(true);
+            navigate("/list")
+        }else{
+            param?.setIsSubmit(false)
+        }
+    }
+
+    const validate=(value:any)=>{
+        if(value.userName!=correctValue.correctUserName){
+            error.userName="ユーザー名が異なります";
+        }else{
+            error.userName="";
+        }
+        if(value.password!=correctValue.correctPassword){
+            error.password="パスワードが異なります"
+        }else{
+            error.password="";
+        }
+        return error;
+    }
 
     return (
             <div style={param?.value?style.open:style.close}>
                 <h2 style={style.title}>ログイン</h2>
                 <form action="" style={style.form}>
-                    <input type="text" style={style.input} placeholder='ユーザー名(必須)'/>
-                    <input type="text" style={style.input} placeholder='パスワード(必須)'/>
+                    <input type="text" name="userName" style={style.input} placeholder='ユーザー名(必須)' onChange={(e)=>handleChnage(e)}/>
+                    <p style={param?.isSubmit?style.nonError:style.errorMessage}>{param?.formError.userName}</p>
+                    <input type="text" name="password" style={style.input} placeholder='パスワード(必須)' onChange={(e)=>handleChnage(e)}/>
+                    <p style={param?.isSubmit?style.nonError:style.errorMessage}>{param?.formError.password}</p>
                     <div>
-                        <button style={style.loginbtn}><Link to="/list">ログイン</Link></button>
+                        <button style={style.loginbtn} onClick={(e)=>handleSubmit(e)}>ログイン
+                        </button>
                     </div>
                 </form>
             </div>
@@ -55,6 +94,16 @@ const style: {[key: string]: React.CSSProperties} = {
         fontSize:"15px",
         borderRadius:"1px"
     },
+    errorMessage:{
+        color:"#D93934",
+        fontFamily:"Yu Gothic",
+        alignSelf:"flex-start",
+        margin:"-25px auto auto 87px",
+        fontSize:"15px"
+    },
+    nonError:{
+
+    }
 }
 
 export default Login;

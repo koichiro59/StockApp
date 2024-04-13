@@ -26,7 +26,7 @@ const Header: React.FC = () => {
                         </ul>
                 </nav>
                 {/* ヘッダーロゴ */}
-                    <div style={style.logo}><Link to="/list" style={style.logoTitle}>在庫管理システム</Link></div>
+                    <div style={style.logo}><Link to="/" style={style.logoTitle}>在庫管理システム</Link></div>
                 </div>
                 {/* ログアウトボタン */}
                 <div style={style.navArea}>
