@@ -88,7 +88,31 @@ const Practice:React.FC=()=>{
   
     return (
       <>
-      <h1>aaa</h1>
+        <form onSubmit={handleSubmit(addTodo)}>
+          <input {...register("todo")} type="text" />
+          <button type="submit">add</button>
+        </form>
+        {todos.map((todo) => (
+          <div key={todo.id} style={{ display: "flex" }}>
+            {isEdit.id === todo.id ? (
+              <form onSubmit={handleSubmit(editTodo)}>
+                <input {...register("editTodoName")} type="text" />
+                <button>send</button>
+              </form>
+            ) : (
+              <>
+                <p>{todo.todo}</p>
+                <button
+                  onClick={() => setIsEdit({ id: todo.id, todo: todo.todo })}
+                >
+                  edit
+                </button>
+              </>
+            )}
+  
+            <button onClick={() => deleteTodo(todo.id)}>delete</button>
+          </div>
+        ))}
       </>
     );
 }
