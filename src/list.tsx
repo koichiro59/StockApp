@@ -1,10 +1,9 @@
 import { title } from "process";
 import React, {useState,useContext} from "react";
-import { AuthContext } from "./param"
+import { AuthContext } from "./param";
 
 const List: React.FC = () => {
     const param = useContext(AuthContext);
-
     return(
         <div style={param?.value?style.open:style.close}>
             <h2 style={style.title}>商品一覧</h2>

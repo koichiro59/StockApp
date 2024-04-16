@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './app';
+import Practice from './practice';
 import { AuthProvider } from "./param"
 
 const root = ReactDOM.createRoot(
@@ -9,7 +10,7 @@ const root = ReactDOM.createRoot(
 root.render(
     <AuthProvider>
       <React.StrictMode>
-          <App/>
+          <Practice/>
       </React.StrictMode>
     </AuthProvider>
 );

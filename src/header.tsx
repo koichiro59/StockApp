@@ -28,12 +28,11 @@ const Header: React.FC = () => {
                 {/* ヘッダーロゴ */}
                     <div style={style.logo}>
                         {param?.isSubmit?(<>
-                            <Link to="/list">在庫管理システム</Link>
+                            <Link to="/list"style={style.logoTitle}>在庫管理システム</Link>
                         </>):(
                             <>
-                                <Link to="/">在庫管理システム</Link>
+                                <Link to="/" style={style.logoTitle}>在庫管理システム</Link>
                             </>)}
-                        <Link to="/" style={style.logoTitle}></Link>
                     </div>
                 </div>
                 {/* ログアウトボタン */}
