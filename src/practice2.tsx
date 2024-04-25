@@ -12,7 +12,7 @@ type AddTodoType = {
     editTodoName: string;
 };
 
-const Practice:React.FC=()=>{
+const Practice2:React.FC=()=>{
     const { register, handleSubmit, reset } = useForm<AddTodoType>();
     const [todos, setTodos] = useState<TodoTypes[]>([]);
     const [isEdit, setIsEdit] = useState({ id: "", todo: "" });
@@ -117,4 +117,4 @@ const Practice:React.FC=()=>{
     );
 }
 
-export default Practice;
+export default Practice2;
