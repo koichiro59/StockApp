@@ -19,7 +19,7 @@ app.get("/", (req: Request, res: Response) => {
     if (error) {
       res.status(500).json({ message: error.message });
     } else {
-      res.status(200).json({ todos: result });
+      res.status(200).json({ products: result });
     }
   });
 });

@@ -1,8 +1,6 @@
 import React, {useState,useContext, useEffect} from "react";
-import List from './list';
 import { BrowserRouter, Link, Route, Routes, useNavigate} from "react-router-dom";
 import { AuthContext } from "./param"
-import { error } from "console";
 
 
 const Login: React.FC = () => {

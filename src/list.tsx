@@ -1,8 +1,24 @@
-import { title } from "process";
-import React, {useState,useContext} from "react";
+import React, {useState,useContext,useEffect} from "react";
+import axios from "axios";
 import { AuthContext } from "./param";
 
+type ProductType={
+    product_id:number;
+    product_name:string;
+    price:number;
+    description:string;
+  }
+
 const List: React.FC = () => {
+    const [product,setProduct]=useState<ProductType[]>([]);
+
+    useEffect(() => {
+        axios.get("http://localhost:3000").then((response) => {
+          const { products } = response.data;
+          setProduct(products);
+        });
+      }, []);
+
     const param = useContext(AuthContext);
     return(
         <div style={param?.value?style.open:style.close}>
@@ -20,6 +36,16 @@ const List: React.FC = () => {
                     <th style={style.listTh}>状況</th>
                     <th style={style.listTh}>編集</th>
                 </tr>
+                {product.map((products) => (
+                    <tr>
+                        <td style={style.listTd2n1}>{products.product_id}</td>
+                        <td style={style.listTd2n1}>{products.product_name}</td>
+                        <td style={style.listTd2n1}>{products.price}</td>
+                        <td style={style.listTd2n1}>{products.description}</td>
+                        <td style={style.listTd2n1}>在庫処理</td>
+                        <td style={style.listTd2n1}>編集する</td>
+                    </tr>
+                ))}
                 <tr>
                     <td style={style.listTd2n1}>1</td>
                     <td style={style.listTd2n1}>aaaaaa</td>
