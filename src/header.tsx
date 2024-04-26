@@ -37,7 +37,7 @@ const Header: React.FC = () => {
                 </div>
                 {/* ログアウトボタン */}
                 <div style={style.navArea}>
-                    <button style={style.logoutBtn}>ログアウト</button>
+                    <button style={style.logoutBtn}><a href="/" style={style.logoutA}>ログアウト</a></button>
                 </div>
             </header>
         </div>
@@ -175,6 +175,10 @@ const style: {[key: string]: React.CSSProperties} = {
         height:"100%",
         width:"15%",
         display:"block",
+    },
+    logoutA:{
+        textDecoration:"none",
+        color:"#fff"
     }
 };
 

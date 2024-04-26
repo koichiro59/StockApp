@@ -1,6 +1,7 @@
 import React, {useState,useContext,useEffect} from "react";
 import axios from "axios";
 import { AuthContext } from "./param";
+import { before } from "node:test";
 
 type ProductType={
     product_id:number;
@@ -24,8 +25,7 @@ const List: React.FC = () => {
         <div style={param?.value?style.open:style.close}>
             <h2 style={style.title}>商品一覧</h2>
             <div style={style.addArea}>
-                <div style={style.icon}>〇</div>
-                <button style={style.addbtn}>商品を追加する</button>
+                <button style={style.addbtn}>商品を追加する<span style={style.icon}>＞</span></button>
             </div>
             <table style={style.listTable}>
                 <tr>
@@ -38,30 +38,14 @@ const List: React.FC = () => {
                 </tr>
                 {product.map((products) => (
                     <tr>
-                        <td style={style.listTd2n1}>{products.product_id}</td>
-                        <td style={style.listTd2n1}>{products.product_name}</td>
-                        <td style={style.listTd2n1}>{products.price}</td>
-                        <td style={style.listTd2n1}>{products.description}</td>
-                        <td style={style.listTd2n1}>在庫処理</td>
-                        <td style={style.listTd2n1}>編集する</td>
+                        <td style={(products.product_id)%2===0?style.listTd2n:style.listTd2n1}>{products.product_id}</td>
+                        <td style={(products.product_id)%2===0?style.listTd2n:style.listTd2n1}>{products.product_name}</td>
+                        <td style={(products.product_id)%2===0?style.listTd2n:style.listTd2n1}>{products.price}</td>
+                        <td style={(products.product_id)%2===0?style.listTd2n:style.listTd2n1}>{products.description}</td>
+                        <td style={(products.product_id)%2===0?style.listTd2n:style.listTd2n1}>在庫処理</td>
+                        <td style={(products.product_id)%2===0?style.listTd2n:style.listTd2n1}><a href="/" style={style.edit}>編集する</a></td>
                     </tr>
                 ))}
-                <tr>
-                    <td style={style.listTd2n1}>1</td>
-                    <td style={style.listTd2n1}>aaaaaa</td>
-                    <td style={style.listTd2n1}>111111</td>
-                    <td style={style.listTd2n1}></td>
-                    <td style={style.listTd2n1}>在庫処理</td>
-                    <td style={style.listTd2n1}>編集する</td>
-                </tr>
-                <tr>
-                    <td style={style.listTd2n}>2</td>
-                    <td style={style.listTd2n}>bbbbbb</td>
-                    <td style={style.listTd2n}>222222</td>
-                    <td style={style.listTd2n}></td>
-                    <td style={style.listTd2n}>在庫処理</td>
-                    <td style={style.listTd2n}>編集する</td>
-                </tr>
             </table>
         </div>
     )
@@ -86,6 +70,9 @@ const style: {[key: string]: React.CSSProperties} = {
     icon:{
         background:"#ff7c3c",
         color:"#fff",
+        marginLeft:"5px",
+        display:"inline-block",
+        transform:"rotate(90deg)"
     },
     addbtn:{
         width:"150px",
@@ -93,7 +80,7 @@ const style: {[key: string]: React.CSSProperties} = {
         background:"#ff7c3c",
         border:"solid 1px #fff",
         color:"#fff",
-        borderRadius:"1px"
+        borderRadius:"1px",
     },
     listTable:{
         borderCollapse:"collapse",
@@ -122,6 +109,10 @@ const style: {[key: string]: React.CSSProperties} = {
         color:"#444444",
         fontFamily:"Yu Gothic",
         padding:"15px 20px",
+    },
+    edit:{
+        textDecoration:"none",
+        color:"#444444"
     }
 
 }
