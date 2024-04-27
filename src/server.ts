@@ -1,10 +1,13 @@
 import express, { Application, Request, Response } from "express";
 import cors from "cors";
 import mysql from "mysql2";
+import { error } from "console";
 
 const app: Application = express();
 const PORT = 3000;
 app.use(cors({ origin: "http://localhost:3001" }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 const connection = mysql.createConnection({
   host: "127.0.0.1",
@@ -22,6 +25,17 @@ app.get("/", (req: Request, res: Response) => {
       res.status(200).json({ products: result });
     }
   });
+});
+
+app.post("/add", (req: Request, res: Response) => {
+  const sql = `INSERT INTO product VALUES ("${req.body.product_id}", "${req.body.product_name}","${req.body.price}","${req.body.description}")`;
+  connection.query(sql,(error,result)=>{
+    if (error) {
+      console.log(error);
+      return res.status(500).json({ message: "Failed to add todo" });
+    }
+    return res.status(200).json({ product: result });
+  })
 });
 
 try {

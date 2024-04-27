@@ -179,6 +179,9 @@ const style: {[key: string]: React.CSSProperties} = {
     logoutA:{
         textDecoration:"none",
         color:"#fff"
+    },
+    blank:{
+        height:"30px"
     }
 };
 
