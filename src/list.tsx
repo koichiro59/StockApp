@@ -4,17 +4,19 @@ import { AuthContext } from "./param";
 import { before } from "node:test";
 import { table } from "console";
 import { object } from "prop-types";
+import Stock from "./stock";
 
 type ProductType={
     product_id:number;
     product_name:string;
     price:number;
     description:string;
+    stock:number;
   }
 
 const List: React.FC = () => {
     const [product,setProduct]=useState<ProductType[]>([]);
-    const [value,setValue]=useState({product_id:0,product_name:"",price:0,description:""});
+    const [value,setValue]=useState({product_id:0,product_name:"",price:0,description:"",stock:0});
     const [isForm,setIsForm]=useState(false);
     const param = useContext(AuthContext);
 
@@ -31,7 +33,8 @@ const List: React.FC = () => {
             product_id:value.product_id,
             product_name:value.product_name,
             price:value.price,
-            description:value.description
+            description:value.description,
+            stock:value.stock
         }).then((response)=>{
             console.log(response.data);
         })
@@ -64,6 +67,7 @@ const List: React.FC = () => {
                         <input name="product_name" type="text" placeholder="商品名" style={style.input} onChange={(e)=>handleChnage(e)}/>
                         <input name="price" type="text" placeholder="価格" style={style.input} onChange={(e)=>handleChnage(e)}/>
                         <input name="description" type="text" placeholder="商品説明" style={style.input} onChange={(e)=>handleChnage(e)}/>
+                        <input name="stock" type="text" placeholder="在庫数 " style={style.input} onChange={(e)=>handleChnage(e)}/>
                         <div style={style.btnArea}>
                             <button style={style.addProduct1}>取り消し</button>
                             <button type="submit" style={style.addProduct2}>追加</button>
@@ -84,7 +88,7 @@ const List: React.FC = () => {
                         <th style={style.listTh}>商品名</th>
                         <th style={style.listTh}>単価</th>
                         <th style={style.listTh}>説明</th>
-                        <th style={style.listTh}>状況</th>
+                        <th style={style.listTh}>在庫数</th>
                         <th style={style.listTh}>編集</th>
                     </tr>
                     {product.map((products) => (
@@ -93,7 +97,7 @@ const List: React.FC = () => {
                             <td style={(products.product_id)%2===0?style.listTd2n:style.listTd2n1}>{products.product_name}</td>
                             <td style={(products.product_id)%2===0?style.listTd2n:style.listTd2n1}>{products.price}</td>
                             <td style={(products.product_id)%2===0?style.listTd2n:style.listTd2n1}>{products.description}</td>
-                            <td style={(products.product_id)%2===0?style.listTd2n:style.listTd2n1}>在庫処理</td>
+                            <td style={(products.product_id)%2===0?style.listTd2n:style.listTd2n1}>{products.stock}</td>
                             <td style={(products.product_id)%2===0?style.listTd2n:style.listTd2n1}>
                                 <button style={style.edit} key={products.product_id} onClick={()=>deleteEvent(products.product_id)}>編集する</button>
                             </td>
@@ -190,7 +194,7 @@ const style: {[key: string]: React.CSSProperties} = {
         top:"50%",
         left:"50%",
         width:"40%",
-        height:"60%",
+        height:"70%",
         transform:"translate(-50%,-50%)",
         background:"#fff"
     },

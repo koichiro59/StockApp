@@ -28,7 +28,7 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.post("/add", (req: Request, res: Response) => {
-  const sql = `INSERT INTO product VALUES ("${req.body.product_id}", "${req.body.product_name}","${req.body.price}","${req.body.description}")`;
+  const sql = `INSERT INTO product VALUES ("${req.body.product_id}", "${req.body.product_name}","${req.body.price}","${req.body.description}","${req.body.stock}")`;
   connection.query(sql,(error,result)=>{
     if (error) {
       console.log(error);
