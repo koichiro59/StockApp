@@ -18,6 +18,12 @@ const List: React.FC = () => {
     const [isForm,setIsForm]=useState(false);
     const param = useContext(AuthContext);
 
+    const addEvent=()=>{
+        setIsForm(!isForm);
+        const id=(Object.keys(product).length)+1;
+        setValue({...value,product_id:id})
+    }
+
     const submitEvent=async(e:any)=>{
         e.preventDefault();
         setProduct([...product,value])
@@ -31,10 +37,12 @@ const List: React.FC = () => {
         })
     }
 
-    const addEvent=()=>{
-        setIsForm(!isForm);
-        const id=(Object.keys(product).length)+1;
-        setValue({...value,product_id:id})
+    const deleteEvent=async(id:number)=>{
+        await axios.delete("http://localhost:3000/delete",{
+            data:{id},
+        }).then((response)=>{
+            console.log(response.data)
+        })
     }
 
     const handleChnage=(e:any)=>{
@@ -86,7 +94,9 @@ const List: React.FC = () => {
                             <td style={(products.product_id)%2===0?style.listTd2n:style.listTd2n1}>{products.price}</td>
                             <td style={(products.product_id)%2===0?style.listTd2n:style.listTd2n1}>{products.description}</td>
                             <td style={(products.product_id)%2===0?style.listTd2n:style.listTd2n1}>在庫処理</td>
-                            <td style={(products.product_id)%2===0?style.listTd2n:style.listTd2n1}><a href="/" style={style.edit}>編集する</a></td>
+                            <td style={(products.product_id)%2===0?style.listTd2n:style.listTd2n1}>
+                                <button style={style.edit} key={products.product_id} onClick={()=>deleteEvent(products.product_id)}>編集する</button>
+                            </td>
                         </tr>
                     ))}
                 </table>

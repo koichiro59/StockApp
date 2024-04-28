@@ -38,6 +38,18 @@ app.post("/add", (req: Request, res: Response) => {
   })
 });
 
+app.delete("/delete", (req: Request, res: Response) => {
+  const id=req.body.id;
+  const sql = `DELETE FROM product WHERE product_id = "${id}"`;
+  connection.query(sql, (error) => {
+    if (error) {
+      res.status(500).json({ message: error.message });
+    } else {
+      res.status(200).json({ message: "success" });
+    }
+  });
+});
+
 try {
   app.listen(PORT, () => {
     console.log(`server running at://localhost:${PORT}`);
