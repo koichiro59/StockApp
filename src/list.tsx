@@ -1,10 +1,7 @@
 import React, {useState,useContext,useEffect} from "react";
 import axios from "axios";
 import { AuthContext } from "./param";
-import { before } from "node:test";
-import { table } from "console";
-import { object } from "prop-types";
-import Stock from "./stock";
+
 
 type ProductType={
     product_id:number;
@@ -99,7 +96,7 @@ const List: React.FC = () => {
                             <td style={(products.product_id)%2===0?style.listTd2n:style.listTd2n1}>{products.description}</td>
                             <td style={(products.product_id)%2===0?style.listTd2n:style.listTd2n1}>{products.stock}</td>
                             <td style={(products.product_id)%2===0?style.listTd2n:style.listTd2n1}>
-                                <button style={style.edit} key={products.product_id} onClick={()=>deleteEvent(products.product_id)}>編集する</button>
+                                <button style={style.edit} key={products.product_id} onClick={()=>deleteEvent(products.product_id)}>編集</button>
                             </td>
                         </tr>
                     ))}
@@ -186,8 +183,14 @@ const style: {[key: string]: React.CSSProperties} = {
         padding:"15px 20px",
     },
     edit:{
+        width:"60px",
         textDecoration:"none",
-        color:"#444444"
+        color:"#fff",
+        background:"#ff7c3c",
+        border:"solid 1px #fff",
+        borderRadius:"1px",
+        cursor: "pointer",
+        padding:"5px 15px",
     },
     onForm:{
         position:"fixed",
